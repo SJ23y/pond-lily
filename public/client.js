@@ -1,45 +1,31 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
-(function(){
-  console.log('hello world :o');
-  
-  // our default array of dreams
-  const dreams = [
-    'Find and count some sheep',
-    'Climb a really tall mountain',
-    'Wash the dishes'
-  ];
-  
-  // define variables that reference elements on our page
-  const dreamsList = document.getElementById('dreams');
-  const dreamsForm = document.forms[0];
-  const dreamInput = dreamsForm.elements['dream'];
-  
-  // a helper function that creates a list item for a given dream
-  const appendNewDream = function(dream) {
-    const newListItem = document.createElement('li');
-    newListItem.innerHTML = dream;
-    dreamsList.appendChild(newListItem);
-  }
-  
-  // iterate through every dream and add it to our page
-  dreams.forEach( function(dream) {
-    appendNewDream(dream);
-  });
-  
-  // listen for the form to be submitted and add a new dream when it is
-  dreamsForm.onsubmit = function(event) {
-    // stop our form submission from refreshing the page
-    event.preventDefault();
+$(document).ready(function() {
+  $("#field").on("keypress", function(e) {
+    if (e.which == 13) {             
+      $.ajax({
+        url: '//en.wikipedia.org/w/api.php',
+        data: {action: 'query', list: 'search', srsearch: v, format: 'json', srprop: 'snippet'},
+        dataType: 'jsonp',
+        success: function(json) {
+          var html= json.query.search;           
+          var line ="";
+          var url = "";
+          html.forEach(function(val) {
+           url = "https://en.wikipedia.org/?curid=" + val.pageid;
+           line += "<a href=" + url + " class='answer' target='_blank'>" + "<h3>" + val.title + "</h3></br><span>" + val.snippet + "</span>" + "</a></br>";           
+         });
+          document.getElementById("block").style.cssText = "margin-top: 20px";          
+          $("#info").html(line);
+        } 
+      });
+    };
     
-    // get dream value and add it to the list
-    dreams.push(dreamInput.value);
-    appendNewDream(dreamInput.value);
-  
-    // reset form 
-    dreamInput.value = '';
-    dreamInput.focus();
-  };
-  
-})()
+  });    
+});
+
+var v = "";
+function textIt(obj) {  
+  v = obj.value; 
+};
