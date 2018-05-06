@@ -16,8 +16,14 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/wiki", function (request, response) {
+  response.sendFile(__dirname + '/views/wiki.html');
+});
 
 
+app.get("/image", function (request, response) {
+  response.sendFile(__dirname + '/views/img.html');
+});
 
 // listen for requests :)
 var listener = app.listen('3000', function () {
