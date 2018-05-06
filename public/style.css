@@ -1,71 +1,63 @@
 /* styles */
 /* called by your view template */
 
-* {
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
-}
-
-h1 {
-  font-style: italic;
-  color: #373fff;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-p {
-  max-width: 600px;
-}
-
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
-  display: inline-block;
+  background: #8B3626;
   width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
+  color: #424242;
+  font-size: 1.3em;
+  text-align: center;
 }
 
-input {
+a { 
+  text-decoration: none;
+  color: #424242;  
+}
+
+.block {
+  margin-top: 300px;
+  position: relative;
+  text-align: center;  
+}
+
+.field {
+  padding: 0;
+  margin: 0;  
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #006400;
+  margin: 30px auto;  
+  min-width: 300px;
+  font-size: 2em;
+  opacity: 1;
+  color: #00838F;
+  }
+
+.icon::checked label {
+  opacity: 0;
+  
 }
 
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
+.answer {
+  background-color: #00838F;
+  display: block;
+  padding: 15px;
+  min-height: 100px;
+  text-align: center;
+  margin: 0;
+  color: #212121;
+  
 }
 
-button:hover {
-  background-color: yellow;
+a.answer:hover {
+  border-left: 5px solid #424242;
 }
 
-button:active {
-  box-shadow: none;
+.answer h3 {
+  margin: 0;  
 }
 
-li {
-  margin-bottom: 5px;
-}
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
+.answer span {
+  margin: 0;  
 }
