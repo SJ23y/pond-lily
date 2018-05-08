@@ -25,6 +25,12 @@ app.get("/image", function (request, response) {
   response.sendFile(__dirname + '/views/img.html');
 });
 
+app.get("/image/*", function (req, res) {
+  
+  res.send(req.url.slice(7))
+  ;
+});
+
 // listen for requests :)
 var listener = app.listen('3000', function () {
   console.log('Your app is listening on ');
