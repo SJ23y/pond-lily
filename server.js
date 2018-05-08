@@ -3,7 +3,9 @@
 
 // init project
 var express = require('express');
+var https = require('https');
 var app = express();
+
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -26,9 +28,11 @@ app.get("/image", function (request, response) {
 });
 
 app.get("/image/*", function (req, res) {
-  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + req.url.slice(7)
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + req.url.slice(7);
+  https.get(s_url, function(data) {
+    res.json()
+  })
   
-  res.send(req.url.slice(7))
   ;
 });
 
