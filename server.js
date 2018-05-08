@@ -26,6 +26,7 @@ app.get("/image", function (request, response) {
 });
 
 app.get("/image/*", function (req, res) {
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + req.url.slice(7)
   
   res.send(req.url.slice(7))
   ;
