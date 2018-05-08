@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "pexels-api-wrapper": "^1.0.8",
-    "mongodb": "^3.0.7"
+    "mongodb": "^3.0.7",
+    "pug": "^2.0.3"
   },
   "engines": {
     "node": "8.x"
