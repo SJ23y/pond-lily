@@ -27,16 +27,16 @@ app.get("/image", function (request, response) {
   response.sendFile(__dirname + '/views/img.html');
 });
 
-var data;
+var data = '';
 
 app.get("/image/*", function (req, res) {
   var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + req.url.slice(7);
   https.get(s_url, function(resp) {
   resp.on('data', function(chunk) {
-      data+=chunk;
+      data+=JSONstringify(chunk);
   }) 
   resp.on('end', function() {
-      res.send(JSON.stringify(data.items))
+      res.send(data)
   }) 
   })
   
