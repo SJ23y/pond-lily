@@ -30,7 +30,7 @@ app.get("/image", function (request, response) {
 app.get("/image/*", function (req, res) {
   var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + req.url.slice(7);
   https.get(s_url, function(data) {
-    res.json()
+    res.send(JSON.stringify(data))
   })
   
   ;
