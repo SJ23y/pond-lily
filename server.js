@@ -39,8 +39,8 @@ app.get("/image/*", function (req, res) {
   resp.on('data', function(chunk) {
       data.push(chunk);
   }) 
-  resp.on('end', function() {      
-      res.render('img', {values: JSON.parse(Buffer.concat(data).toString()).items })    
+  resp.on('end', function() {
+      res.render('image', {values: JSON.parse(Buffer.concat(data).toString()).items })    
   }) 
   })
   
