@@ -4,6 +4,7 @@
 // init project
 var express = require('express');
 var https = require('https');
+var 
 var app = express();
 
 
@@ -39,8 +40,7 @@ app.get("/image/*", function (req, res) {
       data.push(chunk);
   }) 
   resp.on('end', function() {      
-      res.send(JSON.parse(Buffer.concat(data).toString()).items)
-    res.render('img', {})
+      res.render('img', {values: JSON.parse(Buffer.concat(data).toString()).items })    
   }) 
   })
   
