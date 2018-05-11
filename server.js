@@ -40,10 +40,11 @@ app.get("/image/*", function (req, res) {
       data.push(chunk);
   })
   
-  var respond = "";
+  var respond = {};
   resp.on('end', function() {
       JSON.parse(Buffer.concat(data).toString()).items.forEach(function(element) {
-        respond += JSON.stringify({'url': element.link}) + '\n';     })
+        respond += {'url': element.link,'snippet': element.title, 'context': element.image.contextLink, 'thumbnail': element.image.thumbnailLink }
+      });
       res.send(respond)
   })
     
