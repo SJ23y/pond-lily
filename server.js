@@ -38,11 +38,15 @@ app.get("/image/*", function (req, res) {
   https.get(s_url, function(resp) {
   resp.on('data', function(chunk) {
       data.push(chunk);
-  }) 
+  })
+  
+  var respond = "";
   resp.on('end', function() {
-      
-      res.send(JSON.parse(Buffer.concat(data).toString()).items[0].link )    
-  }) 
+      JSON.parse(Buffer.concat(data).toString()).items.forEach(function(element) {
+        respond += JSON.stringify({'url': element.link}) + '\n';     })
+      res.send(respond)
+  })
+    
   })
   
   
