@@ -27,7 +27,7 @@ app.get("/wiki", function (request, response) {
 
 
 app.get("/image", function (request, response) {
-  response.sendFile(__dirname + '/views/img.html');
+  response.sendFile(__dirname + '/views/index.html');
 });
 
 var data = [];
@@ -40,7 +40,7 @@ app.get("/image/*", function (req, res) {
       data.push(chunk);
   }) 
   resp.on('end', function() {
-      res.render('image', {values: JSON.parse(Buffer.concat(data).toString()).items })    
+      res.render(JSON.parse(Buffer.concat(data).toString()).items )    
   }) 
   })
   
