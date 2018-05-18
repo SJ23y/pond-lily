@@ -6,5 +6,9 @@ html(lang="en")
     
   body
     p Your text must be here:
-    each val in values
-      p= val
+    each l in link
+      each head in header
+        each thumb in image
+          each snip in description
+            h3= head
+            a
