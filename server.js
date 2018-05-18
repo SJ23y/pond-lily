@@ -45,7 +45,7 @@ app.get("/image/*", function (req, res) {
         JSON.parse(Buffer.concat(data).toString()).items.forEach(function(element) {
         respond.push(JSON.stringify({'url': element.link,'snippet': element.title, 'context': element.image.contextLink, 'thumbnail': element.image.thumbnailLink }))
       });
-      res.send(respond)
+      res.render('image', {'values': respond})
   })
     
   })
