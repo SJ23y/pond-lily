@@ -40,27 +40,13 @@ app.get("/image/*", function (req, res) {
       data.push(chunk);
   })
   
-  var urls = [];
-  var snippets = [];
-  var contexts = [];
-  var thumbnails = [];
   var respond = [];
   resp.on('end', function() {
-        console.log(Buffer.concat(data).toString().items)
-        JSON.parse(Buffer.concat(data).toString()).items.forEach(function(element) {
+        var buf = Buffer.concat(data).toString();
+        JSON.parse(buf).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
-        urls.push(element.link);
-        snippets.push(element.title);
-        contexts.push(element.image.contextLink);
-        thumbnails.push(element.image.thumbnailLink)
-      });
-      res.render('image', {
-        'link': urls,
-        'header': snippets,
-        'description': contexts,
-        'image': thumbnails,
-        'values': respond
-      })
+              });
+      res.render('image', {'values': respond})
   })
     
   })

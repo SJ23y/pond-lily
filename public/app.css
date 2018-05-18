@@ -24,9 +24,12 @@ body {
 
 .image-header {
   text-decoration: none;
-  text-color: white;  
+  display: block;
+  color: white;
+  height: 48px;
+  text-align: center;  
 }
 
-.image-header h6 {
-  margin: 0;  
+.image-header h6 {  
+  
 }
