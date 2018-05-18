@@ -46,6 +46,7 @@ app.get("/image/*", function (req, res) {
   var thumbnails = [];
   var respond = [];
   resp.on('end', function() {
+        console.log(Buffer.concat(data).toString().items)
         JSON.parse(Buffer.concat(data).toString()).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
         urls.push(element.link);
