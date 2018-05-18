@@ -42,7 +42,6 @@ app.get("/image/*", function (req, res) {
   
   var respond = [];
   resp.on('end', function() {
-        console.log(data)  
         var buf = Buffer.concat(data).toString();
         console.log(JSON.parse(buf).items);
         JSON.parse(buf).items.forEach(function(element) {
