@@ -5,12 +5,12 @@ html(lang="en")
     link(rel='stylesheet' href='/app.css')
     
   body
-    div.container
+    
     mixin image-card(val)
       div.image-card
         a(href= val.snip class="image-header" target="_blank"): h6= val.head
         a(href= val.url class="image-link" target="_blank"): img(src= val.thumb width="250" height="200")
             
-    
-    each part in values
-      +image-card(part)
+    div.container
+      each part in values
+        +image-card(part)

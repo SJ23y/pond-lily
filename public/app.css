@@ -2,13 +2,14 @@
 /* called by your view template */
 
 body {
-  background: #8B3626;
+  background: black;
   width: 100%;
   color: #424242;
   font-size: 1.3em;  
 }
 
 .container {
+  width: 1050px;
   margin: 0 auto;
 }
 
@@ -26,10 +27,12 @@ body {
   text-decoration: none;
   display: block;
   color: white;
-  height: 48px;
-  text-align: center;  
+  height: 50px;
+  text-align: center;
+  margin: 0;
+  background-color: rgba(255,255,255, 0.5);
 }
 
-.image-header h6 {  
-  
+.image-header h6 {
+  margin: 0; 
 }
