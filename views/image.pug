@@ -6,9 +6,11 @@ html(lang="en")
     
   body
     p Your text must be here:
-    mixin image-card(url, head, snip, thumb)
+    mixin image-card(val)
       div.image-card
-        a(href= snip): h3= head
-        a(href= url): img(src= thumb)
+        a(href= val.snip class="image-header" target="_blank"): h3= val.head
+        a(href= val.url class="image-link" target="_blank"): img(src= val.thumb)
             
     
+    each part in values
+      +image-card(part)
