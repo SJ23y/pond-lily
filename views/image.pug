@@ -6,10 +6,9 @@ html(lang="en")
     
   body
     p Your text must be here:
-    each url in link
-      each head in header
-        each thumb in image
-          each snip in description
-            a(href= snip): h3= head
-            a(href= url): img(src= thumb)
+    mixin image-card(url, head, snip, thumb)
+      div.image-card
+        a(href= snip): h3= head
+        a(href= url): img(src= thumb)
             
+    
