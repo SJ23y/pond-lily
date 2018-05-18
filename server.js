@@ -33,7 +33,7 @@ app.get("/image", function (request, response) {
 var data = [];
 
 app.get("/image/*", function (req, res) {
-  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.url.slice(7)) + "&searchType=image";
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.url.slice(7)) + "&searchType=image&alt=json";
   
   https.get(s_url, function(resp) {
   resp.on('data', function(chunk) {
@@ -42,6 +42,7 @@ app.get("/image/*", function (req, res) {
   
   var respond = [];
   resp.on('end', function() {
+        console.log(data)  
         var buf = Buffer.concat(data).toString();
         console.log(JSON.parse(buf).items);
         JSON.parse(buf).items.forEach(function(element) {
