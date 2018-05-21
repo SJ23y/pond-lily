@@ -36,10 +36,8 @@ app.get("/image/*", function (req, res) {
   var start = 0;
   var end = 10;
   if (req.query.offset) {
-    start = 
-    end += parseInt(req.query.offset)}
-  console.log(end)
-  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json";
+    start = 10*(parseInt(req.query.offset)-1) + 1;}  
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + start;
   https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
       data.push(chunk);
