@@ -34,15 +34,16 @@ var data = [];
 
 app.get("/image/*", function (req, res) {
   var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.url.slice(7)) + "&searchType=image&alt=json";
-  https.get(s_url, function(resp) {
-  console.log();
+  https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
       data.push(chunk);
   })
   
   var respond = [];
+  var next_page;
   resp.on('end', function() {
-        var buf = Buffer.concat(data).toString();        
+        var buf = Buffer.concat(data).toString();
+        console.log(JSON.parse(buf).queries)
         JSON.parse(buf).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
               });
