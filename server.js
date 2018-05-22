@@ -33,8 +33,7 @@ app.get("/image", function (request, response) {
 var data = '';
 
 app.get("/image/*", function (req, res) {
-  var start = 1;    
-  console.log(req.query.offset)
+  var start = 1; 
   if (req.query.offset !== undefined) {
     start = 10*(parseInt(req.query.offset)-1) + 1;
   }  
@@ -43,11 +42,11 @@ app.get("/image/*", function (req, res) {
   https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
       data += chunk.toString();
+      
   })
   
   var respond = [];  
-  resp.on('end', function() {
-        console.log(data);     
+  resp.on('end', function() {            
         JSON.parse(data).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
               });
