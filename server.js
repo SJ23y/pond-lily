@@ -33,13 +33,17 @@ app.get("/image", function (request, response) {
 var data = '';
 
 app.get("/image/*", function (req, res) {
-  var start = 1; 
+  var start = 1;
+  var nextPage = 2;
+  
   if (req.query.offset !== undefined) {
     start = 10*(parseInt(req.query.offset)-1) + 1;
+    nextPage = parseInt(req.query.offset) + 1;
   }  
-  var nextPage = start + 10;
-  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + start;
-  var next_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + nextPage;
+  
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + start; 
+  var next_url = 'http://pond-lily.glitch.me/' + decodeURIComponent(req.url);
+  
   https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
       data += chunk.toString();      
@@ -50,7 +54,7 @@ app.get("/image/*", function (req, res) {
         JSON.parse(data).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
               });
-      res.render('image', {'values': respond});
+      res.render('image', {'values': respond, 'next': next_url });
       data = '';
     
   })
