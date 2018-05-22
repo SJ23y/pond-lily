@@ -30,7 +30,7 @@ app.get("/image", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-var data = [];
+var data = '';
 
 app.get("/image/*", function (req, res) {
   var start = 1;    
@@ -42,14 +42,13 @@ app.get("/image/*", function (req, res) {
   var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + start;
   https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
-      data.push(chunk);
+      data += chunk.toString();
   })
   
   var respond = [];  
   resp.on('end', function() {
-        var buf = Buffer.concat(data).toString();
-        console.log(buf);
-        JSON.parse(buf).items.forEach(function(element) {
+        console.log(data);     
+        JSON.parse(data).items.forEach(function(element) {
         respond.push({'url': element.link, 'snip': element.image.contextLink, 'head': element.title, 'thumb': element.image.thumbnailLink})
               });
       res.render('image', {'values': respond})
@@ -61,7 +60,7 @@ app.get("/image/*", function (req, res) {
   ;
 });
 
-// listen for requests :)
+ 
 var listener = app.listen('3000', function () {
   console.log('Your app is listening on ');
 });
