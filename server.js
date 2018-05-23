@@ -37,7 +37,8 @@ app.get("/image/*", function (req, res) {
   var start = 1;
   var nextPage = 2;
   var word = decodeURIComponent(req.path.slice(7))
-  var today = Date();
+  var today = new Date();
+  
   
   if (req.query.offset !== undefined) {
     start = 10*(parseInt(req.query.offset)-1) + 1;
@@ -75,6 +76,7 @@ app.get("/image/*", function (req, res) {
   ;
 });
 
+app
  
 var listener = app.listen('3000', function () {
   console.log('Your app is listening on ');
