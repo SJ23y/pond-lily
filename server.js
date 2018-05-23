@@ -6,7 +6,7 @@ var express = require('express');
 var https = require('https');
 var pug = require('pug');
 var app = express();
-var mongo = require('mongodb')
+var mongo = require('mongodb').MongoClient;
 
 
 // we've started you off with Express, 
@@ -36,16 +36,24 @@ app.get("/image", function (request, response) {
 app.get("/image/*", function (req, res) {
   var start = 1;
   var nextPage = 2;
+  var word = decodeURIComponent(req.path.slice(7))
   
   if (req.query.offset !== undefined) {
     start = 10*(parseInt(req.query.offset)-1) + 1;
     nextPage = parseInt(req.query.offset) + 1;
   }  
   
-  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + decodeURIComponent(req.path.slice(7)) + "&searchType=image&alt=json&start=" + start; 
+  var s_url = "https://www.googleapis.com/customsearch/v1?key=" + process.env.API_KEY + "&cx=" + process.env.CX + "&q=" + word + "&searchType=image&alt=json&start=" + start; 
   var next_url = 'http://pond-lily.glitch.me/' + decodeURIComponent(req.path) + '?offset=' + nextPage;
+  var mongo_url = 'mongodb://'+process.env.USER+':'+process.env.PASS+'@'+process.env.HOST+':'+process.env.PORT+'/'+process.env.DB;
   
-  var data = '';
+  mongo.connect(mongo_url, function(err,db) {
+    var chopper = db.db('chopper');
+    var img_search = chopper.collection('img_search_history')
+    img_search.insert([ { 'term': word, 'timestamp': Date() } ])
+  })
+  
+  var data = '';  
   https.get(s_url, function(resp) {  
   resp.on('data', function(chunk) {
       data += chunk.toString();      
