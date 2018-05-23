@@ -82,8 +82,8 @@ app.get('/api/latest/imagesearch/', function(req, res) {
   mongo.connect(mongo_url, function(err,db) {
     var chopper = db.db('chopper');
     var img_search = chopper.collection('img_search_history')
-    img_search.aggregate([ { $sort : { 'timestamp': -1 } }, { $limit: 5 }]).toArray(function(err, doc) {
-      console.log(doc);
+    img_search.aggregate([ { $sort : { 'timestamp': -1 } }, { $limit: 5 }, { $project: { '_id': 0 } }]).toArray(function(err, doc) {
+      res.send(doc);
     })
   })
 })
