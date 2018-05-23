@@ -76,7 +76,18 @@ app.get("/image/*", function (req, res) {
   ;
 });
 
-app
+app.get('/api/latest/imagesearch/', function(req, res) {
+  var mongo_url = 'mongodb://'+process.env.USER+':'+process.env.PASS+'@'+process.env.HOST+':'+process.env.PORT+'/'+process.env.DB;
+  
+  mongo.connect(mongo_url, function(err,db) {
+    var chopper = db.db('chopper');
+    var img_search = chopper.collection('img_search_history')
+    img_search.aggregate([ { $sort : { 'timestamp': -1 } },
+                            { $limit: 5 }]).toArray(function(doc) {
+      console.log(doc);
+    })
+  })
+})
  
 var listener = app.listen('3000', function () {
   console.log('Your app is listening on ');
