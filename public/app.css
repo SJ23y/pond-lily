@@ -31,12 +31,12 @@ body {
 .image-header {
   text-decoration: none;
   display: block;
-  color: white;
+  color: #614b67;
   height: 50px;
   text-align: center;
   margin: 0;
   line-height: 50px;
-  background-color: rgba(255,127,80 ,0.8 );
+  background-color: #fcdbdb;
 }
 
 .image-header h6 {
@@ -44,5 +44,5 @@ body {
 }
 
 .image-card:last-child {
-  background-color: rgba(255,255,255, 0.7);
+  background-color: #fcdbdb;
 }
