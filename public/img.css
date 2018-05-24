@@ -2,9 +2,14 @@ body {
   background: #111422;
   width: 100%;
   color: #818b63;
-  font-size: 1.3em;
+  font-size: 2em;
   text-align: center;
 }
+
+h1 {
+  font-family: 'Dancing Script', cursive;  
+}
+
 
 a { 
   text-decoration: none;
@@ -36,25 +41,3 @@ a {
   
 }
 
-.answer {
-  background-color: #00838F;
-  display: block;
-  padding: 15px;
-  min-height: 100px;
-  text-align: center;
-  margin: 0;
-  color: #212121;
-  
-}
-
-a.answer:hover {
-  border-left: 5px solid #424242;
-}
-
-.answer h3 {
-  margin: 0;  
-}
-
-.answer span {
-  margin: 0;  
-}
