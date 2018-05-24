@@ -4,8 +4,9 @@
 body {
   background: #111422;
   width: 100%;
-  color: #424242;
-  font-size: 1.3em;  
+  color: #818b63;
+  font-size: 2em;
+  font-family: 'Dancing Script', cursive;
 }
 
 .container {
@@ -36,4 +37,8 @@ body {
 
 .image-header h6 {
   margin: 0; 
+}
+
+.image-card:last-child {
+  background-color: #818b63;
 }
