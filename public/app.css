@@ -4,13 +4,14 @@
 body {
   background: #111422;
   width: 100%;
-  color: #818b63;
+  color: #424242;
   font-size: 1.3em;  
 }
 
 .container {
   width: 1050px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .image-card {

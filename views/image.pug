@@ -10,8 +10,9 @@ html(lang="en")
       div.image-card
         a(href= val.snip class="image-header" target="_blank"): h6= val.head
         a(href= val.url class="image-link" target="_blank"): img(src= val.thumb width="250" height="200")
-            
+          
     div.container
+      h1 Image Finder 
       each part in values
         +image-card(part)
       div.image-card
