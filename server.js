@@ -28,7 +28,7 @@ app.get("/wiki", function (request, response) {
 
 
 app.get("/image", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.sendFile(__dirname + '/views/img.html');
 });
 
 

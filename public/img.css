@@ -1,0 +1,60 @@
+body {
+  background: #111422;
+  width: 100%;
+  color: #818b63;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+a { 
+  text-decoration: none;
+  color: #424242;  
+}
+
+.block {
+  margin-top: 300px;
+  position: relative;
+  text-align: center;  
+}
+
+.field {
+  padding: 0;
+  margin: 0;  
+  display: block;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #006400;
+  margin: 30px auto;  
+  min-width: 300px;
+  font-size: 2em;
+  opacity: 1;
+  color: gold;
+  }
+
+.icon::checked label {
+  opacity: 0;
+  
+}
+
+.answer {
+  background-color: #00838F;
+  display: block;
+  padding: 15px;
+  min-height: 100px;
+  text-align: center;
+  margin: 0;
+  color: #212121;
+  
+}
+
+a.answer:hover {
+  border-left: 5px solid #424242;
+}
+
+.answer h3 {
+  margin: 0;  
+}
+
+.answer span {
+  margin: 0;  
+}
