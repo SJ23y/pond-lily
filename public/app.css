@@ -36,7 +36,7 @@ body {
   text-align: center;
   margin: 0;
   line-height: 50px;
-  background-color: rgba(255,255,255, 0.7);
+  background-color: rgba(255,127,80 ,0.8 );
 }
 
 .image-header h6 {
@@ -44,5 +44,5 @@ body {
 }
 
 .image-card:last-child {
-  background-color: rgba(255,255,255, 0.7);;
+  background-color: rgba(255,255,255, 0.7);
 }
